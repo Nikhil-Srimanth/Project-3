@@ -13,7 +13,7 @@ jobs:
       run: |
         pip install buildozer
         sudo apt-get update
-        sudo apt-get install -y git unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libtinfo5
+        sudo apt-get install -y git unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libtinfo6
     - name: Build APK
       run: |
         buildozer android debug
