@@ -5,22 +5,31 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.9'
-      - name: Install Buildozer and Cython
-        run: |
-          pip install buildozer cython
-          sudo apt-get update
-          sudo apt-get install -y git unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libtinfo6
-      - name: Build APK
-        run: |
-          buildozer android debug
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: app-debug.apk
-          path: bin/*.apk
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+    - name: Install Buildozer and Cython
+      run: |
+        pip install buildozer cython
+        sudo apt-get update
+        sudo apt-get install -y git unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libtinfo6
+    - name: Set up Android SDK
+      run: |
+        sudo apt-get install -y wget
+        wget https://dl.google.com/android/repository/commandlinetools-linux-7583922_latest.zip -O cmdline-tools.zip
+        unzip cmdline-tools.zip -d $ANDROID_HOME/cmdline-tools
+        mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/tools
+        yes | $ANDROID_HOME/cmdline-tools/tools/bin/sdkmanager --licenses
+        $ANDROID_HOME/cmdline-tools/tools/bin/sdkmanager "platform-tools" "platforms;android-30" "build-tools;30.0.3"
+    - name: Build APK
+      run: |
+        buildozer android debug
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-debug.apk
+        path: bin/*.apk
