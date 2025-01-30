@@ -44,14 +44,14 @@ android.api = 29
 # Minimum Android SDK version
 android.minapi = 21
 
-# Android SDK version to target
-android.sdk = 23
+# Android SDK version to target (remove this line)
+# android.sdk = 23
 
 # Android NDK version
 android.ndk = 19c
 
-# Architecture (armeabi-v7a is compatible with most devices)
-android.arch = armeabi-v7a
+# Architecture (replace with android.archs)
+android.archs = armeabi-v7a
 
 # Orientation (portrait or landscape)
 orientation = portrait
