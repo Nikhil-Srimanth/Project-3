@@ -16,7 +16,7 @@ jobs:
       run: |
         pip install buildozer cython
         sudo apt-get update
-        sudo apt-get install -y git unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libtinfo7
+        sudo apt-get install -y git unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libtinfo6
     - name: Set up Android SDK
       run: |
         sudo apt-get install -y wget
