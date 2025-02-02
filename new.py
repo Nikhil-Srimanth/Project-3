@@ -184,7 +184,7 @@ class WakeScreen(Screen):
             # Initialize Porcupine wake word detector
             self.porcupine = pvporcupine.create(
                 access_key=PORCUPINE_ACCESS_KEY,
-                keyword_paths=["optic_en_windows_v3_0_0.ppn"],
+                keyword_paths=["optic_en_android_v3_0_0.ppn"],
                 sensitivities=[0.5]
             )
             
